@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EdFi.RtI.Api</name>
+    </assembly>
+    <members>
+        <member name="T:EdFi.RtI.Api.SwaggerStartup">
+            <summary>
+            Startup class used by Swashbuckle command line tool as an entry point to generate Swagger file in CI/CD
+            </summary>
+        </member>
+        <member name="M:EdFi.RtI.Api.SwaggerStartup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+        <member name="T:EdFi.RtI.Api.SwaggerWebHostFactory">
+            <summary>
+            Class used by Swashbuckle command line tool as an entry point to generate Swagger file in CI/CD
+            </summary>
+        </member>
+    </members>
+</doc>

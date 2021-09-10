@@ -1,0 +1,73 @@
+{
+  "name": "edfi.rti.web",
+  "version": "0.1.12",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "serve:local": "vue-cli-service serve --mode local",
+    "build:dev": "yarn version --patch --no-git-tag-version && vue-cli-service build --mode development",
+    "build:prod": "yarn version --patch --no-git-tag-version && vue-cli-service build --mode production",
+    "build:watch": "yarn version --patch --no-git-tag-version && vue-cli-service build --watch",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@bit/bit.envs.compilers.vue": "^0.1.13",
+    "@bit/edgraph.shared.comp-notifications": "^0.0.12",
+    "@bit/edgraph.shared.idle-dialog": "^0.0.28",
+    "@bit/edgraph.shared.loading-component": "0.0.2",
+    "@bit/edgraph.shared.quick-launcher": "^1.0.21",
+    "@bit/edgraph.shared.side-nav": "^1.0.1",
+    "@bit/edgraph.shared.store-actions": "^0.0.14",
+    "@bit/edgraph.shared.store-notify": "^1.3.6",
+    "@bit/edgraph.shared.styles-main": "^0.0.7",
+    "@bit/edgraph.shared.tenant-selector": "^1.0.25",
+    "@bit/edgraph.shared.top-bar": "^1.0.67",
+    "@bit/edgraph.shared.view-404": "^0.0.1",
+    "@bit/edgraph.shared.view-callback": "^0.0.13",
+    "@bit/edgraph.shared.view-no-tenant": "^0.0.14",
+    "@bit/edgraph.shared.view-not-authorized": "^0.0.2",
+    "@bit/edgraph.shared.view-select-tenant": "^0.0.24",
+    "@bit/edgraph.shared.view-silent-renew": "^0.0.1",
+    "axios": "^0.20.0",
+    "chart.js": "^2.9.4",
+    "compare-versions": "^3.6.0",
+    "core-js": "^3.6.5",
+    "idle-vue": "^2.0.5",
+    "json-markup": "^1.1.3",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
+    "oidc-client": "^1.10.1",
+    "typeface-open-sans": "^1.1.13",
+    "vue": "^2.6.11",
+    "vue-chartjs": "^3.5.1",
+    "vue-router": "^3.1.6",
+    "vue-snotify": "^3.2.1",
+    "vuetify": "^2.2.11",
+    "vuetify-confirm": "^2.0.6",
+    "vuex": "^3.5.1",
+    "vuex-oidc": "^3.10.1",
+    "webpack-version-file-plugin": "^0.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "sass": "^1.19.0",
+    "sass-loader": "^8.0.0",
+    "vue-cli-plugin-vuetify": "~2.0.7",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.3.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "bit": {
+    "env": {},
+    "componentsDefaultDirectory": "components/{name}",
+    "packageManager": "npm"
+  }
+}

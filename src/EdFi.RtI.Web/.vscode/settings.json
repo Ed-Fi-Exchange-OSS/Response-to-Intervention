@@ -1,0 +1,8 @@
+{
+    "editor.tokenColorCustomizations": {
+        // Code editor configs here
+        "[One Monokai]": {
+            "comments": "#ae8bb1"
+        }
+    }
+}
