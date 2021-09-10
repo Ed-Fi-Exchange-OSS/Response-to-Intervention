@@ -1,0 +1,9 @@
+.idea
+.vscode
+.git
+.yarn-error.log
+.gitignore
+.DS_Store
+node_modules
+wwwroot
+Dockerfile

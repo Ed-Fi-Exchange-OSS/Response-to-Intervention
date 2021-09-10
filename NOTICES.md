@@ -1,4 +1,4 @@
-# <Insert Repository Name Here> Notices
+# Response-to-Intervention Notices
 
 This product includes software developed at the [Ed-Fi
 Alliance](https://www.ed-fi.org).

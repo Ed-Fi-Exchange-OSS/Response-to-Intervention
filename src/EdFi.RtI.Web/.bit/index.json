@@ -1,0 +1,18 @@
+[
+  {
+    "id": {
+      "scope": null,
+      "name": "toolbar"
+    },
+    "isSymlink": true,
+    "hash": "e5bd72ae4b9a4659d7b2cc1d8162cb49c14dc5c1"
+  },
+  {
+    "id": {
+      "scope": "robertohs13.ed-graph",
+      "name": "toolbar"
+    },
+    "isSymlink": false,
+    "hash": "9a8e6182750c890f2c6b3686837504ef7fe2465d"
+  }
+]

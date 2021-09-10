@@ -1,0 +1,4922 @@
+openapi: 3.0.1
+info:
+  title: Response to Intervention API
+  description: The Management HTTP API.
+  termsOfService: https://edgraph.com/legal/termsofservices
+  contact:
+    name: EdGraph Support Team
+    email: support@edgraph.com
+  license:
+    name: Use under EdGraph license
+    url: https://edgraph.com/legal/license
+  version: v1
+servers:
+  - url: http://docker.for.win.localhost:5001/rti
+paths:
+  /Assessment:
+    post:
+      tags:
+        - Assessment
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+      responses:
+        '200':
+          description: Success
+    get:
+      tags:
+        - Assessment
+      parameters:
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: desc
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+  '/Assessment/students/{studentId}':
+    get:
+      tags:
+        - Assessment
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+  '/Assessment/{assessmentId}':
+    get:
+      tags:
+        - Assessment
+      parameters:
+        - name: assessmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+    put:
+      tags:
+        - Assessment
+      parameters:
+        - name: assessmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+    delete:
+      tags:
+        - Assessment
+      parameters:
+        - name: assessmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+  /Assessment/assessmentFamily:
+    get:
+      tags:
+        - Assessment
+      responses:
+        '200':
+          description: Success
+  /Assessment/postAssessmentFamily:
+    post:
+      tags:
+        - Assessment
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentFamily'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentFamily'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentFamily'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentFamily'
+      responses:
+        '200':
+          description: Success
+  /Assessment/getAllAssessments:
+    get:
+      tags:
+        - Assessment
+      responses:
+        '200':
+          description: Success
+  '/Assessment/deleteAssessmentById/{assessmentId}':
+    delete:
+      tags:
+        - Assessment
+      parameters:
+        - name: assessmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+  /AssessmentCatalog:
+    get:
+      tags:
+        - AssessmentCatalog
+      responses:
+        '200':
+          description: Success
+  /cache/scoring/assessments:
+    post:
+      tags:
+        - Cache
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersBody'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersBody'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersBody'
+      responses:
+        '200':
+          description: Success
+  /cache/scoring/assessmentsAll:
+    post:
+      tags:
+        - Cache
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersAndStudentAssessmentsDTO'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersAndStudentAssessmentsDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersAndStudentAssessmentsDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersAndStudentAssessmentsDTO'
+      responses:
+        '200':
+          description: Success
+  /cache/scoring/interventions:
+    post:
+      tags:
+        - Cache
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.InterventionScoringFiltersBody'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.InterventionScoringFiltersBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.InterventionScoringFiltersBody'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.InterventionScoringFiltersBody'
+      responses:
+        '200':
+          description: Success
+  /cache/clear:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+  /cache/init:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+  /cache/initAsessments:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+  /cache/initInterventions:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.InterventionDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.InterventionDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.InterventionDTO'
+  /cache/initSchools:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+  /cache/initStaffs:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+  /cache/initStaffsBySchool:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StaffsBySchoolDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StaffsBySchoolDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StaffsBySchoolDTO'
+  /cache/initSections:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+  /cache/initSectionsByStaff:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.SectionsByStaffDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.SectionsByStaffDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.SectionsByStaffDTO'
+  /cache/initStudents:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+  /cache/initStudentsBySection:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentsBySectionDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentsBySectionDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentsBySectionDTO'
+  /cache/get:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+  /cache:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.CacheDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.CacheDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.CacheDTO'
+  /cache/schools:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.School'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.School'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.School'
+  '/cache/staffs/{schoolId}':
+    get:
+      tags:
+        - Cache
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Staff'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Staff'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Staff'
+  '/cache/sections/{staffId}':
+    get:
+      tags:
+        - Cache
+      parameters:
+        - name: staffId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Section'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Section'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Section'
+  '/cache/students/{sectionId}':
+    get:
+      tags:
+        - Cache
+      parameters:
+        - name: sectionId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Student'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Student'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Student'
+  /cache/categories:
+    get:
+      tags:
+        - Cache
+      responses:
+        '200':
+          description: Success
+  /Catalog/sections:
+    get:
+      tags:
+        - Catalog
+      responses:
+        '200':
+          description: Success
+  '/Catalog/sections/{staffUniqueId}':
+    get:
+      tags:
+        - Catalog
+      parameters:
+        - name: staffUniqueId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Section'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Section'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Section'
+  /Catalog/schools:
+    get:
+      tags:
+        - Catalog
+      responses:
+        '200':
+          description: Success
+  '/Catalog/schools/staff/{staffUniqueId}':
+    get:
+      tags:
+        - Catalog
+      parameters:
+        - name: staffUniqueId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.School'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.School'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.School'
+  /Catalog/staffs:
+    get:
+      tags:
+        - Catalog
+      responses:
+        '200':
+          description: Success
+  '/Catalog/staffs/school/{schoolId}':
+    get:
+      tags:
+        - Catalog
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+  /Catalog/staff/schools:
+    get:
+      tags:
+        - Catalog
+      responses:
+        '200':
+          description: Success
+  /Catalog/staff/sections:
+    get:
+      tags:
+        - Catalog
+      responses:
+        '200':
+          description: Success
+  '/Catalog/section/students/{sectionId}':
+    get:
+      tags:
+        - Catalog
+      parameters:
+        - name: sectionId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+  /Catalog/staff/assignments:
+    get:
+      tags:
+        - Catalog
+      responses:
+        '200':
+          description: Success
+  /Descriptor/assessmentCategory:
+    get:
+      tags:
+        - Descriptor
+      parameters:
+        - name: instanceId
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: schoolYear
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /Descriptor/assessmentPeriod:
+    get:
+      tags:
+        - Descriptor
+      parameters:
+        - name: instanceId
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: schoolYear
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /Descriptor/gradeLevel:
+    get:
+      tags:
+        - Descriptor
+      parameters:
+        - name: instanceId
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: schoolYear
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /Descriptor/language:
+    get:
+      tags:
+        - Descriptor
+      parameters:
+        - name: instanceId
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: schoolYear
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /Descriptor/edorgIdentificationSystem:
+    get:
+      tags:
+        - Descriptor
+      parameters:
+        - name: instanceId
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: schoolYear
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /Intervention:
+    get:
+      tags:
+        - Intervention
+      parameters:
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: desc
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.InterventionDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.InterventionDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.InterventionDTO'
+    post:
+      tags:
+        - Intervention
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Intervention'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Intervention'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Intervention'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Intervention'
+      responses:
+        '200':
+          description: Success
+  '/Intervention/{interventionId}':
+    get:
+      tags:
+        - Intervention
+      parameters:
+        - name: interventionId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.InterventionDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.InterventionDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.InterventionDTO'
+    put:
+      tags:
+        - Intervention
+      parameters:
+        - name: interventionId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Intervention'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Intervention'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Intervention'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Intervention'
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+        - Intervention
+      parameters:
+        - name: interventionId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+  '/Intervention/deleteInterventionById/{interventionId}':
+    delete:
+      tags:
+        - Intervention
+      parameters:
+        - name: interventionId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+  /Me/staff-education-organization-assignment-associations:
+    get:
+      tags:
+        - Me
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.StaffEducationOrganizationAssignmentAssociationDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.StaffEducationOrganizationAssignmentAssociationDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.StaffEducationOrganizationAssignmentAssociationDTO'
+  '/Me/staff-education-organization-assignment-associations/staff/{staffUniqueId}':
+    get:
+      tags:
+        - Me
+      parameters:
+        - name: staffUniqueId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.StaffEducationOrganizationAssignmentAssociationDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.StaffEducationOrganizationAssignmentAssociationDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.StaffEducationOrganizationAssignmentAssociationDTO'
+  /Me/users:
+    get:
+      tags:
+        - Me
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.StaffDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.StaffDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.StaffDTO'
+  '/Me/session-profile/{staffId}':
+    get:
+      tags:
+        - Me
+      parameters:
+        - name: staffId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.UserSessionProfileDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.UserSessionProfileDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.UserSessionProfileDTO'
+  /Me/session-profile:
+    get:
+      tags:
+        - Me
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.UserSessionProfileDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.UserSessionProfileDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.UserSessionProfileDTO'
+  '/Me/session-profile/email/{email}':
+    get:
+      tags:
+        - Me
+      parameters:
+        - name: email
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.StaffDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.StaffDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.StaffDTO'
+  /ScoringAssessments:
+    post:
+      tags:
+        - ScoringAssessments
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+    put:
+      tags:
+        - ScoringAssessments
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+              nullable: true
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+              nullable: true
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+              nullable: true
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+              nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+    delete:
+      tags:
+        - ScoringAssessments
+      parameters:
+        - name: studentAssessmentId
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: uniqueSectionCode
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: identifier
+          in: query
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+  /ScoringAssessments/association:
+    post:
+      tags:
+        - ScoringAssessments
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.StudentAssessmentBody'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.StudentAssessmentBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.StudentAssessmentBody'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.StudentAssessmentBody'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessment'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessment'
+  /ScoringAssessments/scorings:
+    post:
+      tags:
+        - ScoringAssessments
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersBody'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersBody'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersBody'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+  '/ScoringAssessments/scorings/{studentId}':
+    get:
+      tags:
+        - ScoringAssessments
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+  /ScoringAssessments/deleteAll:
+    delete:
+      tags:
+        - ScoringAssessments
+      parameters:
+        - name: uniqueSectionCode
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: assessmentId
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: date
+          in: query
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+  /ScoringAssessments/getAll:
+    get:
+      tags:
+        - ScoringAssessments
+      responses:
+        '200':
+          description: Success
+  /ScoringInterventions:
+    post:
+      tags:
+        - ScoringInterventions
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.StudentInterventionBody'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.StudentInterventionBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.StudentInterventionBody'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.StudentInterventionBody'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociation'
+  /ScoringInterventions/delete:
+    put:
+      tags:
+        - ScoringInterventions
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociation'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociation'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociation'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociation'
+      responses:
+        '200':
+          description: Success
+  /ScoringInterventions/scorings:
+    post:
+      tags:
+        - ScoringInterventions
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.InterventionScoringFiltersBody'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.InterventionScoringFiltersBody'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.InterventionScoringFiltersBody'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.InterventionScoringFiltersBody'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentInterventionsDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentInterventionsDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentInterventionsDTO'
+  '/ScoringInterventions/scorings/{studentUniqueId}':
+    get:
+      tags:
+        - ScoringInterventions
+      parameters:
+        - name: studentUniqueId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentInterventionsDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentInterventionsDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentInterventionsDTO'
+  /ScoringInterventions/studentInterventions:
+    get:
+      tags:
+        - ScoringInterventions
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociation'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociation'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociation'
+  /Student:
+    get:
+      tags:
+        - Student
+      parameters:
+        - name: getAll
+          in: query
+          schema:
+            type: boolean
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.StudentDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.StudentDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.StudentDTO'
+  '/Student/{id}':
+    get:
+      tags:
+        - Student
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+  '/Student/section/{sectionId}':
+    get:
+      tags:
+        - Student
+      parameters:
+        - name: sectionId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.StudentDTO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.StudentDTO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.StudentDTO'
+  '/Student/uniqueId/{studentUniqueId}':
+    get:
+      tags:
+        - Student
+      parameters:
+        - name: studentUniqueId
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.StudentDTO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.StudentDTO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.StudentDTO'
+  /Types/administrationEnvironment:
+    get:
+      tags:
+        - Types
+      parameters:
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /Types/eventCircumstance:
+    get:
+      tags:
+        - Types
+      parameters:
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /Types/reasonNotTested:
+    get:
+      tags:
+        - Types
+      parameters:
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /Types/retestIndicator:
+    get:
+      tags:
+        - Types
+      parameters:
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /Types/assessmentResult:
+    get:
+      tags:
+        - Types
+      parameters:
+        - name: getAll
+          in: query
+          schema:
+            type: boolean
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /Types/assessmentReportingMethod:
+    get:
+      tags:
+        - Types
+      parameters:
+        - name: getAll
+          in: query
+          schema:
+            type: boolean
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /Types/deliveryMethod:
+    get:
+      tags:
+        - Types
+      parameters:
+        - name: getAll
+          in: query
+          schema:
+            type: boolean
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+  /Types/interventionClass:
+    get:
+      tags:
+        - Types
+      parameters:
+        - name: getAll
+          in: query
+          schema:
+            type: boolean
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+components:
+  schemas:
+    EdFi.Ods.Api.Client.Models.AssessmentAcademicSubjectsItem:
+      type: object
+      properties:
+        academicSubjectDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentAssessedGradeLevelsItem:
+      type: object
+      properties:
+        gradeLevelDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentAssessmentFamilyReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentAssessmentFamilyReference:
+      type: object
+      properties:
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentAssessmentFamilyReferenceLink'
+        title:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentContentStandardAuthorsItem:
+      type: object
+      properties:
+        author:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentContentStandardMandatingEducationOrganizationReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentContentStandardMandatingEducationOrganizationReference:
+      type: object
+      properties:
+        educationOrganizationId:
+          type: integer
+          format: int32
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentContentStandardMandatingEducationOrganizationReferenceLink'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentContentStandard:
+      type: object
+      properties:
+        authors:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentContentStandardAuthorsItem'
+          nullable: true
+        beginDate:
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        mandatingEducationOrganizationReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentContentStandardMandatingEducationOrganizationReference'
+        publicationDate:
+          type: string
+          format: date-time
+          nullable: true
+        publicationStatusType:
+          type: string
+          nullable: true
+        publicationYear:
+          type: integer
+          format: int32
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        uri:
+          type: string
+          nullable: true
+        version:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentEducationOrganizationReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentEducationOrganizationReference:
+      type: object
+      properties:
+        educationOrganizationId:
+          type: integer
+          format: int32
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentEducationOrganizationReferenceLink'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentIdentificationCodesItem:
+      type: object
+      properties:
+        assessmentIdentificationSystemDescriptor:
+          type: string
+          nullable: true
+        assigningOrganizationIdentificationCode:
+          type: string
+          nullable: true
+        identificationCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentLanguagesItem:
+      type: object
+      properties:
+        languageDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentPerformanceLevelsItem:
+      type: object
+      properties:
+        assessmentReportingMethodType:
+          type: string
+          nullable: true
+        maximumScore:
+          type: string
+          nullable: true
+        minimumScore:
+          type: string
+          nullable: true
+        performanceLevelDescriptor:
+          type: string
+          nullable: true
+        resultDatatypeType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentProgramsItemProgramReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentProgramsItemProgramReference:
+      type: object
+      properties:
+        educationOrganizationId:
+          type: integer
+          format: int32
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentProgramsItemProgramReferenceLink'
+        name:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentProgramsItem:
+      type: object
+      properties:
+        programReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentProgramsItemProgramReference'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentScoresItem:
+      type: object
+      properties:
+        assessmentReportingMethodType:
+          type: string
+          nullable: true
+        maximumScore:
+          type: string
+          nullable: true
+        minimumScore:
+          type: string
+          nullable: true
+        resultDatatypeType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentSectionsItemSectionReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentSectionsItemSectionReference:
+      type: object
+      properties:
+        classPeriodName:
+          type: string
+          nullable: true
+        classroomIdentificationCode:
+          type: string
+          nullable: true
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentSectionsItemSectionReferenceLink'
+        localCourseCode:
+          type: string
+          nullable: true
+        schoolId:
+          type: integer
+          format: int32
+        schoolYear:
+          type: integer
+          format: int32
+        sequenceOfCourse:
+          type: integer
+          format: int32
+        termDescriptor:
+          type: string
+          nullable: true
+        uniqueSectionCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentSectionsItem:
+      type: object
+      properties:
+        sectionReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentSectionsItemSectionReference'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.Assessment:
+      type: object
+      properties:
+        _etag:
+          type: string
+          nullable: true
+        academicSubjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentAcademicSubjectsItem'
+          nullable: true
+        adaptiveAssessment:
+          type: boolean
+          nullable: true
+        assessedGradeLevels:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentAssessedGradeLevelsItem'
+          nullable: true
+        assessmentFamilyReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentAssessmentFamilyReference'
+        categoryDescriptor:
+          type: string
+          nullable: true
+        contentStandard:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentContentStandard'
+        educationOrganizationReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentEducationOrganizationReference'
+        form:
+          type: string
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        identificationCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentIdentificationCodesItem'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+        languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentLanguagesItem'
+          nullable: true
+        maxRawScore:
+          type: integer
+          format: int32
+          nullable: true
+        namespace:
+          type: string
+          nullable: true
+        nomenclature:
+          type: string
+          nullable: true
+        performanceLevels:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentPerformanceLevelsItem'
+          nullable: true
+        periodDescriptor:
+          type: string
+          nullable: true
+        programs:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentProgramsItem'
+          nullable: true
+        revisionDate:
+          type: string
+          format: date-time
+          nullable: true
+        scores:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentScoresItem'
+          nullable: true
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentSectionsItem'
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        version:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentFamilyAssessmentPeriodsItem:
+      type: object
+      properties:
+        assessmentPeriodDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentFamilyContentStandardAuthorsItem:
+      type: object
+      properties:
+        author:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentFamilyContentStandardMandatingEducationOrganizationReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentFamilyContentStandardMandatingEducationOrganizationReference:
+      type: object
+      properties:
+        educationOrganizationId:
+          type: integer
+          format: int32
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentFamilyContentStandardMandatingEducationOrganizationReferenceLink'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentFamilyContentStandard:
+      type: object
+      properties:
+        authors:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentFamilyContentStandardAuthorsItem'
+          nullable: true
+        beginDate:
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        mandatingEducationOrganizationReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentFamilyContentStandardMandatingEducationOrganizationReference'
+        publicationDate:
+          type: string
+          format: date-time
+          nullable: true
+        publicationStatusType:
+          type: string
+          nullable: true
+        publicationYear:
+          type: integer
+          format: int32
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        uri:
+          type: string
+          nullable: true
+        version:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentFamilyIdentificationCodesItem:
+      type: object
+      properties:
+        assessmentIdentificationSystemDescriptor:
+          type: string
+          nullable: true
+        assigningOrganizationIdentificationCode:
+          type: string
+          nullable: true
+        identificationCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentFamilyLanguagesItem:
+      type: object
+      properties:
+        languageDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentFamilyParentAssessmentFamilyReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentFamilyParentAssessmentFamilyReference:
+      type: object
+      properties:
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentFamilyParentAssessmentFamilyReferenceLink'
+        title:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.AssessmentFamily:
+      type: object
+      properties:
+        _etag:
+          type: string
+          nullable: true
+        academicSubjectDescriptor:
+          type: string
+          nullable: true
+        assessedGradeLevelDescriptor:
+          type: string
+          nullable: true
+        assessmentCategoryDescriptor:
+          type: string
+          nullable: true
+        assessmentPeriods:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentFamilyAssessmentPeriodsItem'
+          nullable: true
+        contentStandard:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentFamilyContentStandard'
+        id:
+          type: string
+          nullable: true
+        identificationCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentFamilyIdentificationCodesItem'
+          nullable: true
+        languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentFamilyLanguagesItem'
+          nullable: true
+        lowestAssessedGradeLevelDescriptor:
+          type: string
+          nullable: true
+        namespace:
+          type: string
+          nullable: true
+        nomenclature:
+          type: string
+          nullable: true
+        parentAssessmentFamilyReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.AssessmentFamilyParentAssessmentFamilyReference'
+        revisionDate:
+          type: string
+          format: date-time
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        version:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersBody:
+      type: object
+      properties:
+        staffUniqueId:
+          type: string
+          nullable: true
+        uniqueSectionCode:
+          type: string
+          nullable: true
+        category:
+          type: string
+          nullable: true
+        showInactiveStudents:
+          type: boolean
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.AddressesDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.CharacteristicsDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.CohortYearsDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.DisabilitiesDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.ElectronicMailsDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.IdentificationCodesDTO:
+      type: object
+      properties:
+        assigningOrganizationIdentificationCode:
+          type: string
+          nullable: true
+        identificationCode:
+          type: string
+          nullable: true
+        studentIdentificationSystemDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.IdentificationDocumentsDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.IndicatorsDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.InternationalAddressesDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.LanguagesDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.OtherNamesDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.ProgramParticipationsDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.RacesDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.TelephonesDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.VisasDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Student.StudentDTO:
+      type: object
+      properties:
+        _Etag:
+          type: string
+          nullable: true
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.AddressesDTO'
+          nullable: true
+        birthCity:
+          type: string
+          nullable: true
+        birthCountryDescriptor:
+          type: string
+          nullable: true
+        birthDate:
+          type: string
+          format: date-time
+        birthInternationalProvince:
+          type: string
+          nullable: true
+        birthStateAbbreviationType:
+          type: string
+          nullable: true
+        characteristics:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.CharacteristicsDTO'
+          nullable: true
+        citizenshipStatusType:
+          type: string
+          nullable: true
+        cohortYears:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.CohortYearsDTO'
+          nullable: true
+        dateEnteredUS:
+          type: string
+          nullable: true
+        disabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.DisabilitiesDTO'
+          nullable: true
+        displacementStatus:
+          type: string
+          nullable: true
+        economicDisadvantaged:
+          type: string
+          nullable: true
+        electronicMails:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.ElectronicMailsDTO'
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        generationCodeSuffix:
+          type: string
+          nullable: true
+        hispanicLatinoEthnicity:
+          type: boolean
+        id:
+          type: string
+          nullable: true
+        identificationCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.IdentificationCodesDTO'
+          nullable: true
+        identificationDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.IdentificationDocumentsDTO'
+          nullable: true
+        indicators:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.IndicatorsDTO'
+          nullable: true
+        internationalAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.InternationalAddressesDTO'
+          nullable: true
+        languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.LanguagesDTO'
+          nullable: true
+        lastSurname:
+          type: string
+          nullable: true
+        learningStyle:
+          type: string
+          nullable: true
+        limitedEnglishProficiencyDescriptor:
+          type: string
+          nullable: true
+        loginId:
+          type: string
+          nullable: true
+        maidenName:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        multipleBirthStatus:
+          type: string
+          nullable: true
+        oldEthnicityType:
+          type: string
+          nullable: true
+        otherNames:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.OtherNamesDTO'
+          nullable: true
+        personalTitlePrefix:
+          type: string
+          nullable: true
+        profileThumbnail:
+          type: string
+          nullable: true
+        programParticipations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.ProgramParticipationsDTO'
+          nullable: true
+        races:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.RacesDTO'
+          nullable: true
+        schoolFoodServicesEligibilityDescriptor:
+          type: string
+          nullable: true
+        sexType:
+          type: string
+          nullable: true
+        studentUniqueId:
+          type: string
+          nullable: true
+        telephones:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.TelephonesDTO'
+          nullable: true
+        visas:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.VisasDTO'
+          nullable: true
+        fullName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentAccommodationsItem:
+      type: object
+      properties:
+        accommodationDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentAssessmentReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentAssessmentReference:
+      type: object
+      properties:
+        identifier:
+          type: string
+          nullable: true
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentAssessmentReferenceLink'
+        namespace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentItemsItemAssessmentItemReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentItemsItemAssessmentItemReference:
+      type: object
+      properties:
+        assessmentIdentifier:
+          type: string
+          nullable: true
+        identificationCode:
+          type: string
+          nullable: true
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentItemsItemAssessmentItemReferenceLink'
+        namespace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentItemsItem:
+      type: object
+      properties:
+        assessmentItemReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentItemsItemAssessmentItemReference'
+        assessmentItemResultType:
+          type: string
+          nullable: true
+        assessmentResponse:
+          type: string
+          nullable: true
+        descriptiveFeedback:
+          type: string
+          nullable: true
+        rawScoreResult:
+          type: integer
+          format: int32
+          nullable: true
+        responseIndicatorType:
+          type: string
+          nullable: true
+        timeAssessed:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentPerformanceLevelsItem:
+      type: object
+      properties:
+        assessmentReportingMethodType:
+          type: string
+          nullable: true
+        performanceLevelDescriptor:
+          type: string
+          nullable: true
+        performanceLevelMet:
+          type: boolean
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentScoreResultsItem:
+      type: object
+      properties:
+        assessmentReportingMethodType:
+          type: string
+          nullable: true
+        result:
+          type: string
+          nullable: true
+        resultDatatypeType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentStudentObjectiveAssessmentsItemObjectiveAssessmentReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentStudentObjectiveAssessmentsItemObjectiveAssessmentReference:
+      type: object
+      properties:
+        assessmentIdentifier:
+          type: string
+          nullable: true
+        identificationCode:
+          type: string
+          nullable: true
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentStudentObjectiveAssessmentsItemObjectiveAssessmentReferenceLink'
+        namespace:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentStudentObjectiveAssessmentsItemPerformanceLevelsItem:
+      type: object
+      properties:
+        assessmentReportingMethodType:
+          type: string
+          nullable: true
+        performanceLevelDescriptor:
+          type: string
+          nullable: true
+        performanceLevelMet:
+          type: boolean
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentStudentObjectiveAssessmentsItemScoreResultsItem:
+      type: object
+      properties:
+        assessmentReportingMethodType:
+          type: string
+          nullable: true
+        result:
+          type: string
+          nullable: true
+        resultDatatypeType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentStudentObjectiveAssessmentsItem:
+      type: object
+      properties:
+        objectiveAssessmentReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentStudentObjectiveAssessmentsItemObjectiveAssessmentReference'
+        performanceLevels:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentStudentObjectiveAssessmentsItemPerformanceLevelsItem'
+          nullable: true
+        scoreResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentStudentObjectiveAssessmentsItemScoreResultsItem'
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentStudentReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessmentStudentReference:
+      type: object
+      properties:
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentStudentReferenceLink'
+        studentUniqueId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAssessment:
+      type: object
+      properties:
+        _etag:
+          type: string
+          nullable: true
+        accommodations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentAccommodationsItem'
+          nullable: true
+        administrationDate:
+          type: string
+          format: date-time
+        administrationEndDate:
+          type: string
+          format: date-time
+          nullable: true
+        administrationEnvironmentType:
+          type: string
+          nullable: true
+        administrationLanguageDescriptor:
+          type: string
+          nullable: true
+        assessmentReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentAssessmentReference'
+        eventCircumstanceType:
+          type: string
+          nullable: true
+        eventDescription:
+          type: string
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentItemsItem'
+          nullable: true
+        performanceLevels:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentPerformanceLevelsItem'
+          nullable: true
+        reasonNotTestedType:
+          type: string
+          nullable: true
+        retestIndicatorType:
+          type: string
+          nullable: true
+        scoreResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentScoreResultsItem'
+          nullable: true
+        serialNumber:
+          type: string
+          nullable: true
+        studentObjectiveAssessments:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentStudentObjectiveAssessmentsItem'
+          nullable: true
+        studentReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessmentStudentReference'
+        whenAssessedGradeLevelDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO+StudentAssessmentAssociationDTO:
+      type: object
+      properties:
+        associationModel:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAssessment'
+        assessment:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO:
+      type: object
+      properties:
+        student:
+          $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.StudentDTO'
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO+StudentAssessmentAssociationDTO'
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersAndStudentAssessmentsDTO:
+      type: object
+      properties:
+        filters:
+          $ref: '#/components/schemas/EdFi.RtI.Core.RequestBodies.AssessmentScoringFiltersBody'
+        scorings:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentAssessmentsDTO'
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.RequestBodies.InterventionScoringFiltersBody:
+      type: object
+      properties:
+        staffUniqueId:
+          type: string
+          nullable: true
+        sectionId:
+          type: string
+          nullable: true
+        showInactiveStudents:
+          type: boolean
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Interventions.AppropriateGradeLevelsDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Interventions.AppropriateSexesDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Interventions.DiagnosesDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Interventions.EducationContentsDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Interventions.LinkDTO:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Interventions.EducationOrganizationReferenceDTO:
+      type: object
+      properties:
+        educationOrganizationId:
+          type: integer
+          format: int32
+        link:
+          $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.LinkDTO'
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Interventions.InterventionPrescriptionsDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Interventions.LearningResourceMetadataURIsDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Interventions.MeetingTimesDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Interventions.PopulationServedsDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Interventions.StaffsDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Interventions.UrisDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Interventions.InterventionDTO:
+      type: object
+      properties:
+        _Etag:
+          type: string
+          nullable: true
+        appropriateGradeLevels:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.AppropriateGradeLevelsDTO'
+          nullable: true
+        appropriateSexes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.AppropriateSexesDTO'
+          nullable: true
+        beginDate:
+          type: object
+          additionalProperties: false
+          nullable: true
+        classType:
+          type: string
+          nullable: true
+        deliveryMethodType:
+          type: string
+          nullable: true
+        diagnoses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.DiagnosesDTO'
+          nullable: true
+        educationContents:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.EducationContentsDTO'
+          nullable: true
+        educationOrganizationReference:
+          $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.EducationOrganizationReferenceDTO'
+        endDate:
+          type: object
+          additionalProperties: false
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        identificationCode:
+          type: string
+          nullable: true
+        interventionPrescriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.InterventionPrescriptionsDTO'
+          nullable: true
+        learningResourceMetadataURIs:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.LearningResourceMetadataURIsDTO'
+          nullable: true
+        meetingTimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.MeetingTimesDTO'
+          nullable: true
+        populationServeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.PopulationServedsDTO'
+          nullable: true
+        staffs:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.StaffsDTO'
+          nullable: true
+        uris:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Interventions.UrisDTO'
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StaffAddressesItem:
+      type: object
+      properties:
+        addressType:
+          type: string
+          nullable: true
+        apartmentRoomSuiteNumber:
+          type: string
+          nullable: true
+        beginDate:
+          type: string
+          format: date-time
+          nullable: true
+        buildingSiteNumber:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        countyFIPSCode:
+          type: string
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        latitude:
+          type: string
+          nullable: true
+        longitude:
+          type: string
+          nullable: true
+        nameOfCounty:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        stateAbbreviationType:
+          type: string
+          nullable: true
+        streetNumberName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StaffCredentialsItem:
+      type: object
+      properties:
+        credentialExpirationDate:
+          type: string
+          format: date-time
+          nullable: true
+        credentialFieldDescriptor:
+          type: string
+          nullable: true
+        credentialIssuanceDate:
+          type: string
+          format: date-time
+        credentialType:
+          type: string
+          nullable: true
+        levelDescriptor:
+          type: string
+          nullable: true
+        stateOfIssueStateAbbreviationType:
+          type: string
+          nullable: true
+        teachingCredentialBasisType:
+          type: string
+          nullable: true
+        teachingCredentialDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StaffElectronicMailsItem:
+      type: object
+      properties:
+        electronicMailAddress:
+          type: string
+          nullable: true
+        electronicMailType:
+          type: string
+          nullable: true
+        primaryEmailAddressIndicator:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StaffIdentificationCodesItem:
+      type: object
+      properties:
+        assigningOrganizationIdentificationCode:
+          type: string
+          nullable: true
+        identificationCode:
+          type: string
+          nullable: true
+        staffIdentificationSystemDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StaffIdentificationDocumentsItem:
+      type: object
+      properties:
+        documentExpirationDate:
+          type: string
+          format: date-time
+          nullable: true
+        documentTitle:
+          type: string
+          nullable: true
+        identificationDocumentUseType:
+          type: string
+          nullable: true
+        issuerCountryDescriptor:
+          type: string
+          nullable: true
+        issuerDocumentIdentificationCode:
+          type: string
+          nullable: true
+        issuerName:
+          type: string
+          nullable: true
+        personalInformationVerificationType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StaffInternationalAddressesItem:
+      type: object
+      properties:
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        addressLine3:
+          type: string
+          nullable: true
+        addressLine4:
+          type: string
+          nullable: true
+        addressType:
+          type: string
+          nullable: true
+        beginDate:
+          type: string
+          format: date-time
+          nullable: true
+        countryDescriptor:
+          type: string
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        latitude:
+          type: string
+          nullable: true
+        longitude:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StaffLanguagesItemUsesItem:
+      type: object
+      properties:
+        languageUseType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StaffLanguagesItem:
+      type: object
+      properties:
+        languageDescriptor:
+          type: string
+          nullable: true
+        uses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StaffLanguagesItemUsesItem'
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StaffOtherNamesItem:
+      type: object
+      properties:
+        firstName:
+          type: string
+          nullable: true
+        generationCodeSuffix:
+          type: string
+          nullable: true
+        lastSurname:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        otherNameType:
+          type: string
+          nullable: true
+        personalTitlePrefix:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StaffRacesItem:
+      type: object
+      properties:
+        raceType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StaffTelephonesItem:
+      type: object
+      properties:
+        orderOfPriority:
+          type: integer
+          format: int32
+          nullable: true
+        telephoneNumber:
+          type: string
+          nullable: true
+        telephoneNumberType:
+          type: string
+          nullable: true
+        textMessageCapabilityIndicator:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StaffVisasItem:
+      type: object
+      properties:
+        visaType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.Staff:
+      type: object
+      properties:
+        _etag:
+          type: string
+          nullable: true
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StaffAddressesItem'
+          nullable: true
+        birthDate:
+          type: string
+          format: date-time
+          nullable: true
+        citizenshipStatusType:
+          type: string
+          nullable: true
+        credentials:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StaffCredentialsItem'
+          nullable: true
+        electronicMails:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StaffElectronicMailsItem'
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        generationCodeSuffix:
+          type: string
+          nullable: true
+        highestCompletedLevelOfEducationDescriptor:
+          type: string
+          nullable: true
+        highlyQualifiedTeacher:
+          type: boolean
+          nullable: true
+        hispanicLatinoEthnicity:
+          type: boolean
+        id:
+          type: string
+          nullable: true
+        identificationCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StaffIdentificationCodesItem'
+          nullable: true
+        identificationDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StaffIdentificationDocumentsItem'
+          nullable: true
+        internationalAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StaffInternationalAddressesItem'
+          nullable: true
+        languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StaffLanguagesItem'
+          nullable: true
+        lastSurname:
+          type: string
+          nullable: true
+        loginId:
+          type: string
+          nullable: true
+        maidenName:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        oldEthnicityType:
+          type: string
+          nullable: true
+        otherNames:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StaffOtherNamesItem'
+          nullable: true
+        personalTitlePrefix:
+          type: string
+          nullable: true
+        races:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StaffRacesItem'
+          nullable: true
+        sexType:
+          type: string
+          nullable: true
+        staffUniqueId:
+          type: string
+          nullable: true
+        telephones:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StaffTelephonesItem'
+          nullable: true
+        visas:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StaffVisasItem'
+          nullable: true
+        yearsOfPriorProfessionalExperience:
+          type: number
+          format: double
+          nullable: true
+        yearsOfPriorTeachingExperience:
+          type: number
+          format: double
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Composed.StaffsBySchoolDTO:
+      type: object
+      properties:
+        schoolId:
+          type: string
+          nullable: true
+        staffs:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Staff'
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SectionCharacteristicsItem:
+      type: object
+      properties:
+        descriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SectionClassPeriodReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SectionClassPeriodReference:
+      type: object
+      properties:
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SectionClassPeriodReferenceLink'
+        name:
+          type: string
+          nullable: true
+        schoolId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SectionCourseOfferingReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SectionCourseOfferingReference:
+      type: object
+      properties:
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SectionCourseOfferingReferenceLink'
+        localCourseCode:
+          type: string
+          nullable: true
+        schoolId:
+          type: integer
+          format: int32
+        schoolYear:
+          type: integer
+          format: int32
+        termDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SectionLocationReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SectionLocationReference:
+      type: object
+      properties:
+        classroomIdentificationCode:
+          type: string
+          nullable: true
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SectionLocationReferenceLink'
+        schoolId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SectionProgramsItemProgramReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SectionProgramsItemProgramReference:
+      type: object
+      properties:
+        educationOrganizationId:
+          type: integer
+          format: int32
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SectionProgramsItemProgramReferenceLink'
+        name:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SectionProgramsItem:
+      type: object
+      properties:
+        programReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SectionProgramsItemProgramReference'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SectionSchoolReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SectionSchoolReference:
+      type: object
+      properties:
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SectionSchoolReferenceLink'
+        schoolId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.Section:
+      type: object
+      properties:
+        _etag:
+          type: string
+          nullable: true
+        availableCreditConversion:
+          type: number
+          format: double
+          nullable: true
+        availableCreditType:
+          type: string
+          nullable: true
+        availableCredits:
+          type: number
+          format: double
+          nullable: true
+        characteristics:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SectionCharacteristicsItem'
+          nullable: true
+        classPeriodReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SectionClassPeriodReference'
+        courseOfferingReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SectionCourseOfferingReference'
+        educationalEnvironmentType:
+          type: string
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        instructionLanguageDescriptor:
+          type: string
+          nullable: true
+        locationReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SectionLocationReference'
+        mediumOfInstructionType:
+          type: string
+          nullable: true
+        populationServedType:
+          type: string
+          nullable: true
+        programs:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SectionProgramsItem'
+          nullable: true
+        schoolReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SectionSchoolReference'
+        sequenceOfCourse:
+          type: integer
+          format: int32
+        uniqueSectionCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Composed.SectionsByStaffDTO:
+      type: object
+      properties:
+        staffId:
+          type: string
+          nullable: true
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Section'
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentAddressesItem:
+      type: object
+      properties:
+        addressType:
+          type: string
+          nullable: true
+        apartmentRoomSuiteNumber:
+          type: string
+          nullable: true
+        beginDate:
+          type: string
+          format: date-time
+          nullable: true
+        buildingSiteNumber:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        countyFIPSCode:
+          type: string
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        latitude:
+          type: string
+          nullable: true
+        longitude:
+          type: string
+          nullable: true
+        nameOfCounty:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        stateAbbreviationType:
+          type: string
+          nullable: true
+        streetNumberName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentCharacteristicsItem:
+      type: object
+      properties:
+        beginDate:
+          type: string
+          format: date-time
+          nullable: true
+        descriptor:
+          type: string
+          nullable: true
+        designatedBy:
+          type: string
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentCohortYearsItemSchoolYearTypeReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentCohortYearsItemSchoolYearTypeReference:
+      type: object
+      properties:
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentCohortYearsItemSchoolYearTypeReferenceLink'
+        schoolYear:
+          type: integer
+          format: int32
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentCohortYearsItem:
+      type: object
+      properties:
+        cohortYearType:
+          type: string
+          nullable: true
+        schoolYearTypeReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentCohortYearsItemSchoolYearTypeReference'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentDisabilitiesItem:
+      type: object
+      properties:
+        disabilityDescriptor:
+          type: string
+          nullable: true
+        disabilityDeterminationSourceType:
+          type: string
+          nullable: true
+        disabilityDiagnosis:
+          type: string
+          nullable: true
+        orderOfDisability:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentElectronicMailsItem:
+      type: object
+      properties:
+        electronicMailAddress:
+          type: string
+          nullable: true
+        electronicMailType:
+          type: string
+          nullable: true
+        primaryEmailAddressIndicator:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentIdentificationCodesItem:
+      type: object
+      properties:
+        assigningOrganizationIdentificationCode:
+          type: string
+          nullable: true
+        identificationCode:
+          type: string
+          nullable: true
+        studentIdentificationSystemDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentIdentificationDocumentsItem:
+      type: object
+      properties:
+        documentExpirationDate:
+          type: string
+          format: date-time
+          nullable: true
+        documentTitle:
+          type: string
+          nullable: true
+        identificationDocumentUseType:
+          type: string
+          nullable: true
+        issuerCountryDescriptor:
+          type: string
+          nullable: true
+        issuerDocumentIdentificationCode:
+          type: string
+          nullable: true
+        issuerName:
+          type: string
+          nullable: true
+        personalInformationVerificationType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentIndicatorsItem:
+      type: object
+      properties:
+        beginDate:
+          type: string
+          format: date-time
+          nullable: true
+        designatedBy:
+          type: string
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        indicator:
+          type: string
+          nullable: true
+        indicatorGroup:
+          type: string
+          nullable: true
+        indicatorName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentInternationalAddressesItem:
+      type: object
+      properties:
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        addressLine3:
+          type: string
+          nullable: true
+        addressLine4:
+          type: string
+          nullable: true
+        addressType:
+          type: string
+          nullable: true
+        beginDate:
+          type: string
+          format: date-time
+          nullable: true
+        countryDescriptor:
+          type: string
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        latitude:
+          type: string
+          nullable: true
+        longitude:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentLanguagesItemUsesItem:
+      type: object
+      properties:
+        languageUseType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentLanguagesItem:
+      type: object
+      properties:
+        languageDescriptor:
+          type: string
+          nullable: true
+        uses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentLanguagesItemUsesItem'
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentLearningStyle:
+      type: object
+      properties:
+        auditoryLearning:
+          type: number
+          format: double
+        tactileLearning:
+          type: number
+          format: double
+        visualLearning:
+          type: number
+          format: double
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentOtherNamesItem:
+      type: object
+      properties:
+        firstName:
+          type: string
+          nullable: true
+        generationCodeSuffix:
+          type: string
+          nullable: true
+        lastSurname:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        otherNameType:
+          type: string
+          nullable: true
+        personalTitlePrefix:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentProgramParticipationsItemProgramCharacteristicsItem:
+      type: object
+      properties:
+        programCharacteristicDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentProgramParticipationsItem:
+      type: object
+      properties:
+        beginDate:
+          type: string
+          format: date-time
+          nullable: true
+        designatedBy:
+          type: string
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        programCharacteristics:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentProgramParticipationsItemProgramCharacteristicsItem'
+          nullable: true
+        programType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentRacesItem:
+      type: object
+      properties:
+        raceType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentTelephonesItem:
+      type: object
+      properties:
+        orderOfPriority:
+          type: integer
+          format: int32
+          nullable: true
+        telephoneNumber:
+          type: string
+          nullable: true
+        telephoneNumberType:
+          type: string
+          nullable: true
+        textMessageCapabilityIndicator:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentVisasItem:
+      type: object
+      properties:
+        visaType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.Student:
+      type: object
+      properties:
+        _etag:
+          type: string
+          nullable: true
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentAddressesItem'
+          nullable: true
+        birthCity:
+          type: string
+          nullable: true
+        birthCountryDescriptor:
+          type: string
+          nullable: true
+        birthDate:
+          type: string
+          format: date-time
+        birthInternationalProvince:
+          type: string
+          nullable: true
+        birthStateAbbreviationType:
+          type: string
+          nullable: true
+        characteristics:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentCharacteristicsItem'
+          nullable: true
+        citizenshipStatusType:
+          type: string
+          nullable: true
+        cohortYears:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentCohortYearsItem'
+          nullable: true
+        dateEnteredUS:
+          type: string
+          format: date-time
+          nullable: true
+        disabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentDisabilitiesItem'
+          nullable: true
+        displacementStatus:
+          type: string
+          nullable: true
+        economicDisadvantaged:
+          type: boolean
+          nullable: true
+        electronicMails:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentElectronicMailsItem'
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        generationCodeSuffix:
+          type: string
+          nullable: true
+        hispanicLatinoEthnicity:
+          type: boolean
+        id:
+          type: string
+          nullable: true
+        identificationCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentIdentificationCodesItem'
+          nullable: true
+        identificationDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentIdentificationDocumentsItem'
+          nullable: true
+        indicators:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentIndicatorsItem'
+          nullable: true
+        internationalAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInternationalAddressesItem'
+          nullable: true
+        languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentLanguagesItem'
+          nullable: true
+        lastSurname:
+          type: string
+          nullable: true
+        learningStyle:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentLearningStyle'
+        limitedEnglishProficiencyDescriptor:
+          type: string
+          nullable: true
+        loginId:
+          type: string
+          nullable: true
+        maidenName:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        multipleBirthStatus:
+          type: boolean
+          nullable: true
+        oldEthnicityType:
+          type: string
+          nullable: true
+        otherNames:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentOtherNamesItem'
+          nullable: true
+        personalTitlePrefix:
+          type: string
+          nullable: true
+        profileThumbnail:
+          type: string
+          nullable: true
+        programParticipations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentProgramParticipationsItem'
+          nullable: true
+        races:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentRacesItem'
+          nullable: true
+        schoolFoodServicesEligibilityDescriptor:
+          type: string
+          nullable: true
+        sexType:
+          type: string
+          nullable: true
+        studentUniqueId:
+          type: string
+          nullable: true
+        telephones:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentTelephonesItem'
+          nullable: true
+        visas:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentVisasItem'
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Composed.StudentsBySectionDTO:
+      type: object
+      properties:
+        sectionId:
+          type: string
+          nullable: true
+        students:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Student'
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SchoolAddressesItem:
+      type: object
+      properties:
+        addressType:
+          type: string
+          nullable: true
+        apartmentRoomSuiteNumber:
+          type: string
+          nullable: true
+        beginDate:
+          type: string
+          format: date-time
+          nullable: true
+        buildingSiteNumber:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        countyFIPSCode:
+          type: string
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        latitude:
+          type: string
+          nullable: true
+        longitude:
+          type: string
+          nullable: true
+        nameOfCounty:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        stateAbbreviationType:
+          type: string
+          nullable: true
+        streetNumberName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SchoolCharterApprovalSchoolYearTypeReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SchoolCharterApprovalSchoolYearTypeReference:
+      type: object
+      properties:
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SchoolCharterApprovalSchoolYearTypeReferenceLink'
+        schoolYear:
+          type: integer
+          format: int32
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SchoolEducationOrganizationCategoriesItem:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SchoolGradeLevelsItem:
+      type: object
+      properties:
+        gradeLevelDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SchoolIdentificationCodesItem:
+      type: object
+      properties:
+        educationOrganizationIdentificationSystemDescriptor:
+          type: string
+          nullable: true
+        identificationCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SchoolInstitutionTelephonesItem:
+      type: object
+      properties:
+        institutionTelephoneNumberType:
+          type: string
+          nullable: true
+        telephoneNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SchoolInternationalAddressesItem:
+      type: object
+      properties:
+        addressLine1:
+          type: string
+          nullable: true
+        addressLine2:
+          type: string
+          nullable: true
+        addressLine3:
+          type: string
+          nullable: true
+        addressLine4:
+          type: string
+          nullable: true
+        addressType:
+          type: string
+          nullable: true
+        beginDate:
+          type: string
+          format: date-time
+          nullable: true
+        countryDescriptor:
+          type: string
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        latitude:
+          type: string
+          nullable: true
+        longitude:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SchoolLocalEducationAgencyReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SchoolLocalEducationAgencyReference:
+      type: object
+      properties:
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SchoolLocalEducationAgencyReferenceLink'
+        localEducationAgencyId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.SchoolSchoolCategoriesItem:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.School:
+      type: object
+      properties:
+        _etag:
+          type: string
+          nullable: true
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SchoolAddressesItem'
+          nullable: true
+        administrativeFundingControlDescriptor:
+          type: string
+          nullable: true
+        charterApprovalAgencyType:
+          type: string
+          nullable: true
+        charterApprovalSchoolYearTypeReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SchoolCharterApprovalSchoolYearTypeReference'
+        charterStatusType:
+          type: string
+          nullable: true
+        educationOrganizationCategories:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SchoolEducationOrganizationCategoriesItem'
+          nullable: true
+        gradeLevels:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SchoolGradeLevelsItem'
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        identificationCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SchoolIdentificationCodesItem'
+          nullable: true
+        institutionTelephones:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SchoolInstitutionTelephonesItem'
+          nullable: true
+        internationalAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SchoolInternationalAddressesItem'
+          nullable: true
+        internetAccessType:
+          type: string
+          nullable: true
+        localEducationAgencyReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SchoolLocalEducationAgencyReference'
+        magnetSpecialProgramEmphasisSchoolType:
+          type: string
+          nullable: true
+        nameOfInstitution:
+          type: string
+          nullable: true
+        operationalStatusType:
+          type: string
+          nullable: true
+        schoolCategories:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.SchoolSchoolCategoriesItem'
+          nullable: true
+        schoolId:
+          type: integer
+          format: int32
+        shortNameOfInstitution:
+          type: string
+          nullable: true
+        stateOrganizationId:
+          type: string
+          nullable: true
+        titleIPartASchoolDesignationType:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        webSite:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Composed.CacheDTO:
+      type: object
+      properties:
+        schools:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.School'
+          nullable: true
+        staffs:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Staff'
+          nullable: true
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Section'
+          nullable: true
+        categories:
+          type: object
+          additionalProperties: false
+          nullable: true
+        students:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Student'
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionAppropriateGradeLevelsItem:
+      type: object
+      properties:
+        gradeLevelDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionAppropriateSexesItem:
+      type: object
+      properties:
+        sexType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionDiagnosesItem:
+      type: object
+      properties:
+        diagnosisDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionEducationContentsItemEducationContentReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionEducationContentsItemEducationContentReference:
+      type: object
+      properties:
+        contentIdentifier:
+          type: string
+          nullable: true
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionEducationContentsItemEducationContentReferenceLink'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionEducationContentsItem:
+      type: object
+      properties:
+        educationContentReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionEducationContentsItemEducationContentReference'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionEducationOrganizationReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionEducationOrganizationReference:
+      type: object
+      properties:
+        educationOrganizationId:
+          type: integer
+          format: int32
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionEducationOrganizationReferenceLink'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionInterventionPrescriptionsItemInterventionPrescriptionReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionInterventionPrescriptionsItemInterventionPrescriptionReference:
+      type: object
+      properties:
+        educationOrganizationId:
+          type: integer
+          format: int32
+        identificationCode:
+          type: string
+          nullable: true
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionInterventionPrescriptionsItemInterventionPrescriptionReferenceLink'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionInterventionPrescriptionsItem:
+      type: object
+      properties:
+        interventionPrescriptionReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionInterventionPrescriptionsItemInterventionPrescriptionReference'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionLearningResourceMetadataURIsItem:
+      type: object
+      properties:
+        learningResourceMetadataURI:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionMeetingTimesItemClassPeriodReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionMeetingTimesItemClassPeriodReference:
+      type: object
+      properties:
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionMeetingTimesItemClassPeriodReferenceLink'
+        name:
+          type: string
+          nullable: true
+        schoolId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionMeetingTimesItem:
+      type: object
+      properties:
+        alternateDayName:
+          type: string
+          nullable: true
+        classPeriodReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionMeetingTimesItemClassPeriodReference'
+        endTime:
+          type: string
+          nullable: true
+        officialAttendancePeriod:
+          type: boolean
+          nullable: true
+        startTime:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionPopulationServedsItem:
+      type: object
+      properties:
+        populationServedType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionStaffsItemStaffReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionStaffsItemStaffReference:
+      type: object
+      properties:
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionStaffsItemStaffReferenceLink'
+        staffUniqueId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionStaffsItem:
+      type: object
+      properties:
+        staffReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionStaffsItemStaffReference'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.InterventionUrisItem:
+      type: object
+      properties:
+        uri:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.Intervention:
+      type: object
+      properties:
+        _etag:
+          type: string
+          nullable: true
+        appropriateGradeLevels:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionAppropriateGradeLevelsItem'
+          nullable: true
+        appropriateSexes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionAppropriateSexesItem'
+          nullable: true
+        beginDate:
+          type: string
+          format: date-time
+        classType:
+          type: string
+          nullable: true
+        deliveryMethodType:
+          type: string
+          nullable: true
+        diagnoses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionDiagnosesItem'
+          nullable: true
+        educationContents:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionEducationContentsItem'
+          nullable: true
+        educationOrganizationReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionEducationOrganizationReference'
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        identificationCode:
+          type: string
+          nullable: true
+        interventionPrescriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionInterventionPrescriptionsItem'
+          nullable: true
+        learningResourceMetadataURIs:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionLearningResourceMetadataURIsItem'
+          nullable: true
+        meetingTimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionMeetingTimesItem'
+          nullable: true
+        populationServeds:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionPopulationServedsItem'
+          nullable: true
+        staffs:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionStaffsItem'
+          nullable: true
+        uris:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.InterventionUrisItem'
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.EducationOrganizationReferenceLinkDTO:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.EducationOrganizationReferenceDTO:
+      type: object
+      properties:
+        educationOrganizationId:
+          type: integer
+          format: int64
+        link:
+          $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.EducationOrganizationReferenceLinkDTO'
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.StaffReferenceLinkDTO:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.StaffReferenceDTO:
+      type: object
+      properties:
+        link:
+          $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.StaffReferenceLinkDTO'
+        staffUniqueId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.StaffEducationOrganizationAssignmentAssociationDTO:
+      type: object
+      properties:
+        beginDate:
+          type: string
+          format: date-time
+        educationOrganizationReference:
+          $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.EducationOrganizationReferenceDTO'
+        employmentStaffEducationOrganizationEmploymentAssociationReference:
+          type: object
+          additionalProperties: false
+          nullable: true
+        endDate:
+          type: object
+          additionalProperties: false
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        orderOfAssignment:
+          type: object
+          additionalProperties: false
+          nullable: true
+        positionTitle:
+          type: string
+          nullable: true
+        staffClassificationDescriptor:
+          type: string
+          nullable: true
+        staffReference:
+          $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.StaffReferenceDTO'
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Staffs.AddressDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Staffs.CredentialDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Staffs.ElectronicMailDTO:
+      type: object
+      properties:
+        electronicMailAddress:
+          type: string
+          nullable: true
+        electronicMailType:
+          type: string
+          nullable: true
+        primaryEmailAddressIndicator:
+          type: object
+          additionalProperties: false
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Staffs.IdentificationCodeDTO:
+      type: object
+      properties:
+        assigningOrganizationIdentificationCode:
+          type: object
+          additionalProperties: false
+          nullable: true
+        identificationCode:
+          type: integer
+          format: int32
+        staffIdentificationSystemDescriptor:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Staffs.IdentificationDocumentDTO:
+      type: object
+      properties:
+        documentExpirationDate:
+          type: object
+          additionalProperties: false
+          nullable: true
+        documentTitle:
+          type: object
+          additionalProperties: false
+          nullable: true
+        identificationDocumentUseType:
+          type: string
+          nullable: true
+        issuerCountryDescriptor:
+          type: object
+          additionalProperties: false
+          nullable: true
+        issuerDocumentIdentificationCode:
+          type: object
+          additionalProperties: false
+          nullable: true
+        issuerName:
+          type: object
+          additionalProperties: false
+          nullable: true
+        personalInformationVerificationType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Staffs.InternationalAddressDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Staffs.LanguageDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Staffs.RaceDTO:
+      type: object
+      properties:
+        raceType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Staffs.TelephoneDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Staffs.VisaDTO:
+      type: object
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Staffs.StaffDTO:
+      type: object
+      properties:
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.AddressDTO'
+          nullable: true
+        birthDate:
+          type: string
+          format: date-time
+        citizenshipStatusType:
+          type: object
+          additionalProperties: false
+          nullable: true
+        credentials:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.CredentialDTO'
+          nullable: true
+        electronicEmails:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.ElectronicMailDTO'
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        generationCodeSuffix:
+          type: object
+          additionalProperties: false
+          nullable: true
+        highestCompletedLevelOfEducationDescriptor:
+          type: object
+          additionalProperties: false
+          nullable: true
+        highlyQualifiedTeacher:
+          type: object
+          additionalProperties: false
+          nullable: true
+        hispanicLatinoEthnicity:
+          type: boolean
+        id:
+          type: string
+          nullable: true
+        identificationCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.IdentificationCodeDTO'
+          nullable: true
+        identificationDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.IdentificationDocumentDTO'
+          nullable: true
+        internationalAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.InternationalAddressDTO'
+          nullable: true
+        languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.LanguageDTO'
+          nullable: true
+        lastSurname:
+          type: string
+          nullable: true
+        loginId:
+          type: object
+          additionalProperties: false
+          nullable: true
+        maidenName:
+          type: object
+          additionalProperties: false
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        oldEthnicityType:
+          type: string
+          nullable: true
+        otherNames:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+          nullable: true
+        personalTitlePrefix:
+          type: string
+          nullable: true
+        races:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.RaceDTO'
+          nullable: true
+        sexType:
+          type: string
+          nullable: true
+        staffUniqueId:
+          type: integer
+          format: int32
+        telephones:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.TelephoneDTO'
+          nullable: true
+        visas:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.VisaDTO'
+          nullable: true
+        yearsOfPriorProfessionalExperience:
+          type: number
+          format: double
+          nullable: true
+        yearsOfPriorTeachingExperience:
+          type: number
+          format: double
+          nullable: true
+        _etag:
+          type: string
+          nullable: true
+        fullName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Composed.UserSessionProfileDTO:
+      type: object
+      properties:
+        staff:
+          $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Staffs.StaffDTO'
+        staffEducationOrganizationAssignmentAssociation:
+          $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.StaffEducationOrganizationAssignmentAssociations.StaffEducationOrganizationAssignmentAssociationDTO'
+      additionalProperties: false
+    EdFi.RtI.Core.RequestBodies.StudentAssessmentBody:
+      type: object
+      properties:
+        student:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Student'
+        assessment:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Assessment'
+        administrationDate:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.RtI.Core.RequestBodies.StudentInterventionBody:
+      type: object
+      properties:
+        student:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Student'
+        intervention:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Intervention'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentInterventionAssociationCohortReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentInterventionAssociationCohortReference:
+      type: object
+      properties:
+        educationOrganizationId:
+          type: integer
+          format: int32
+        identifier:
+          type: string
+          nullable: true
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociationCohortReferenceLink'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentInterventionAssociationInterventionEffectivenessesItem:
+      type: object
+      properties:
+        diagnosisDescriptor:
+          type: string
+          nullable: true
+        gradeLevelDescriptor:
+          type: string
+          nullable: true
+        improvementIndex:
+          type: integer
+          format: int32
+          nullable: true
+        interventionEffectivenessRatingType:
+          type: string
+          nullable: true
+        populationServedType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentInterventionAssociationInterventionReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentInterventionAssociationInterventionReference:
+      type: object
+      properties:
+        educationOrganizationId:
+          type: integer
+          format: int32
+        identificationCode:
+          type: string
+          nullable: true
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociationInterventionReferenceLink'
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentInterventionAssociationStudentReferenceLink:
+      type: object
+      properties:
+        href:
+          type: string
+          nullable: true
+        rel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentInterventionAssociationStudentReference:
+      type: object
+      properties:
+        link:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociationStudentReferenceLink'
+        studentUniqueId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EdFi.Ods.Api.Client.Models.StudentInterventionAssociation:
+      type: object
+      properties:
+        _etag:
+          type: string
+          nullable: true
+        cohortReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociationCohortReference'
+        diagnosticStatement:
+          type: string
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        interventionEffectivenesses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociationInterventionEffectivenessesItem'
+          nullable: true
+        interventionReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociationInterventionReference'
+        studentReference:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociationStudentReference'
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Composed.StudentInterventionsDTO+StudentInterventionAssociationDTO:
+      type: object
+      properties:
+        associationModel:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.StudentInterventionAssociation'
+        intervention:
+          $ref: '#/components/schemas/EdFi.Ods.Api.Client.Models.Intervention'
+      additionalProperties: false
+    EdFi.RtI.Core.DTOs.Composed.StudentInterventionsDTO:
+      type: object
+      properties:
+        student:
+          $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Student.StudentDTO'
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EdFi.RtI.Core.DTOs.Composed.StudentInterventionsDTO+StudentInterventionAssociationDTO'
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://localhost:5305/connect/authorize
+          tokenUrl: http://localhost:5305/connect/token
+          scopes:
+            https://api.edgraph.com/auth/management: Management API
